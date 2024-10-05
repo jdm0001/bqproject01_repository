@@ -8,5 +8,6 @@ BEGIN
 doc
 */
     SELECT * 
-    FROM bq_dataset_01_d.V1;
+    FROM bq_dataset_01_d.V1
+    WHERE parentId = 1;
 END
