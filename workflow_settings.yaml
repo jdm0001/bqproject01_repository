@@ -1,0 +1,5 @@
+defaultProject: bqproject01-d
+defaultLocation: us-central1
+defaultDataset: bq_dataset_01_d
+defaultAssertionDataset: dataform_assertions
+dataformCoreVersion: 3.0.0
