@@ -1,0 +1,12 @@
+config {
+    type: "operations",
+    hasOutput: false
+}
+CREATE OR REPLACE PROCEDURE bq_dataset_01_d.P1()
+BEGIN
+/*
+doc
+*/
+    SELECT * 
+    FROM bq_dataset_01_d.V1;
+END
