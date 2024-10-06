@@ -1,0 +1,14 @@
+config {
+  type: "table",
+  description: "Description of the table.",
+  columns: {
+    id: "Description of id column",
+    name: "Description of the name column",
+    f1: "Description of the f1 column",
+  },
+  uniqueKey: ["id"]
+}
+
+          SELECT 1 id, "name1" name, 101 f1
+UNION ALL SELECT 2 id, "name2" name, 202 f1
+UNION ALL SELECT 3 id, "name3" name, 303 f1
