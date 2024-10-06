@@ -1,6 +1,7 @@
 config {
   type: "view", 
-  description: "description of the whole view V1",
+  materialized: true,
+  description: "materialized view of parent-child query",
   columns: {
     parentId: "description of parent id",
     parentName: "description of parent name",
@@ -15,8 +16,8 @@ SELECT
  t2.id childId, 
  t2.t1_name childName
 
-FROM        ${ref("T1")} t1
-INNER JOIN  ${ref("T2")} t2
+FROM        ${ref("T1_parent")} t1
+INNER JOIN  ${ref("T2_child")} t2
 ON          t1.id = t2.parentId
 
 ORDER BY t1.id, t2.id

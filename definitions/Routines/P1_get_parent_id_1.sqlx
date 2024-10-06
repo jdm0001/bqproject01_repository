@@ -1,0 +1,14 @@
+config {
+ type: "operations",
+ hasOutput: true
+}
+CREATE OR REPLACE PROCEDURE ${self()}()
+BEGIN
+/*
+Describe here because we can't use the Dataform description attribute above.
+ description: "description of ${self()} procedure - returns the parent=1 records"
+*/
+    SELECT * 
+    FROM ${ref("V1_parent_child")}
+    WHERE parentId = 1;
+END
