@@ -6,7 +6,8 @@ config {
     parentName: "description of parent name",
     childId: "description of child id",
     childName: "description of child name"
-  }
+  },
+  dependencies: ["T1_parent", "T2_child"]
 }
 
 SELECT 
