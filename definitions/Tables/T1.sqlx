@@ -1,14 +1,22 @@
 config {
-  type: "table",
-  description: "Description of the table.",
-  columns: {
-    id: "Description of id column",
-    name: "Description of the name column",
-    f1: "Description of the f1 column",
-  },
-  uniqueKey: ["id"]
+  type: "operations",
+  hasOutput: true
 }
 
-          SELECT 1 id, "name1" name, 101 f1
-UNION ALL SELECT 2 id, "name2" name, 202 f1
-UNION ALL SELECT 3 id, "name3" name, 303 f1
+DROP TABLE IF EXISTS ${self()};
+
+CREATE TABLE ${self()} (
+  id       INT64   PRIMARY KEY NOT ENFORCED   OPTIONS(description="description of id column"),
+  t1_name  STRING                             OPTIONS(description="description of t1_name column"),    
+  f1       INT64                              OPTIONS(description="description of f1 column"),
+  d1       DATETIME                           OPTIONS(description="description of d1 column")
+)
+PARTITION BY DATETIME_TRUNC(d1, DAY)
+OPTIONS (
+  description="The description of ${self()}"
+);
+
+INSERT ${self()}
+          SELECT 1 id, "name1" t1_name, 101 f1, CAST("2024-01-01 01:00:00.00" AS DATETIME) d1
+UNION ALL SELECT 2 id, "name2" t1_name, 202 f1, CAST("2024-01-02 01:00:00.00" AS DATETIME) d1
+UNION ALL SELECT 3 id, "name3" t1_name, 303 f1, CAST("2024-01-03 01:00:00.00" AS DATETIME) d1;
