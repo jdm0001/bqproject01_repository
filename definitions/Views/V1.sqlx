@@ -1,0 +1,22 @@
+config {
+  type: "view", 
+  description: "description of the whole view V1",
+  columns: {
+    parentId: "description of parent id",
+    parentName: "description of parent name",
+    childId: "description of child id",
+    childName: "description of child name"
+  }
+}
+
+SELECT 
+ t1.id parentId, 
+ t1.t1_name parentName, 
+ t2.id childId, 
+ t2.t1_name childName
+
+FROM        ${ref("T1")} t1
+INNER JOIN  ${ref("T2")} t2
+ON          t1.id = t2.parentId
+
+ORDER BY t1.id, t2.id
