@@ -1,0 +1,31 @@
+config {
+  type: "operations",
+  hasOutput: true
+}
+
+DROP MATERIALIZED VIEW IF EXISTS ${self()};
+
+CREATE MATERIALIZED VIEW ${self()}
+  AS
+  (
+  SELECT 
+  t1.id parentId, 
+  t1.t1_name parentName, 
+  t2.id childId, 
+  t2.t1_name childName
+
+  FROM        ${ref("T1_parent")} t1
+  INNER JOIN  ${ref("T2_child")} t2
+  ON          t1.id = t2.parentId
+
+  --ORDER BY t1.id, t2.id --can not sort materialized views
+
+);
+
+ALTER MATERIALIZED VIEW ${self()}
+SET OPTIONS (description="The description of ${self()}");
+
+--ALTER VIEW ${self()}
+--ALTER COLUMN parentId SET OPTIONS(description="description of id column");
+--cannot have column descriptions for materialized views https://issuetracker.google.com/issues/344800624?pli=1
+
