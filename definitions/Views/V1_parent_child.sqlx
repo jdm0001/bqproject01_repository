@@ -1,13 +1,13 @@
 config {
   type: "view", 
-  materialized: true,
   description: "materialized view of parent-child query",
   columns: {
     parentId: "description of parent id",
     parentName: "description of parent name",
     childId: "description of child id",
     childName: "description of child name"
-  }
+  },
+  dependencies: ["T1_parent", "T2_child"]
 }
 
 SELECT 
