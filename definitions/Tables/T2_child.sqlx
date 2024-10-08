@@ -1,7 +1,7 @@
 config {
   type: "operations",
   hasOutput: true,
-  dependencies: ["T1_parent", "initialize"]
+  dependencies: ["T1_parent", "init_01_drop_all_objects"]
 }
 
 DROP TABLE IF EXISTS ${self()};
