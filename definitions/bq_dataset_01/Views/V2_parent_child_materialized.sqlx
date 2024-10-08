@@ -3,9 +3,9 @@ config {
   hasOutput: true
 }
 
-DROP MATERIALIZED VIEW IF EXISTS ${self()};
+DROP MATERIALIZED VIEW IF EXISTS `${database()}`.${dataset_map.get_dataset_01()}.${name()};
 
-CREATE MATERIALIZED VIEW ${self()}
+CREATE MATERIALIZED VIEW `${database()}`.${dataset_map.get_dataset_01()}.${name()}
   AS
   (
   SELECT 
@@ -22,10 +22,10 @@ CREATE MATERIALIZED VIEW ${self()}
 
 );
 
-ALTER MATERIALIZED VIEW ${self()}
-SET OPTIONS (description="The description of ${self()}");
+ALTER MATERIALIZED VIEW `${database()}`.${dataset_map.get_dataset_01()}.${name()}
+SET OPTIONS (description="The description of ${database()}.${dataset_map.get_dataset_01()}.${name()}");
 
---ALTER VIEW ${self()}
+--ALTER VIEW ${database()}.`${dataset_map`.get_dataset_01()}.${name()}
 --ALTER COLUMN parentId SET OPTIONS(description="description of id column");
 --cannot have column descriptions for materialized views https://issuetracker.google.com/issues/344800624?pli=1
 
