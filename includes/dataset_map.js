@@ -1,16 +1,10 @@
 
 function get_dataset_01(){
   
-  e = (dataform.projectConfig.vars.environmentName)
+  dataset = "bq_dataset_01"
+  suffix = dataform.projectConfig.vars.dataset_suffix
 
-  if (e == 'dev') {
-    r = 'bq_dataset_01_d'
-  } else if (e == 'stage') {
-    r = 'bq_dataset_01_s'
-  } else if (e == 'prod') {
-    r = 'bq_dataset_01_p'
-  }
-
+  r = dataset + "_" + suffix
   return r
 
 }
@@ -18,16 +12,10 @@ function get_dataset_01(){
 
 function get_dataset_02(){
   
-  e = (dataform.projectConfig.vars.environmentName)
+  dataset = "bq_dataset_02"
+  suffix = dataform.projectConfig.vars.dataset_suffix
 
-  if (e == 'dev') {
-    r = 'bq_dataset_02_d'
-  } else if (e == 'stage') {
-    r = 'bq_dataset_02_s'
-  } else if (e == 'prod') {
-    r = 'bq_dataset_02_p'
-  }
-
+  r = dataset + "_" + suffix
   return r
 
 }

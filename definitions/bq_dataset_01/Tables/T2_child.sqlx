@@ -1,13 +1,13 @@
 config {
   type: "operations",
   hasOutput: true,
-  dependencies: ["T1_parent", "init_01_drop_all_objects"],
+  dependencies: ["T1_parent"],
   schema: dataset_map.get_dataset_01()
 }
 
-DROP TABLE IF EXISTS ${database()}.${dataset_map.get_dataset_01()}.${name()};
+DROP TABLE IF EXISTS ${self()};
 
-CREATE TABLE ${database()}.${dataset_map.get_dataset_01()}.${name()} (
+CREATE TABLE ${self()} (
  id       INT64   PRIMARY KEY NOT ENFORCED                        OPTIONS(description="description of id column"),
  parentId INT64   REFERENCES ${ref("T1_parent")}(id) NOT ENFORCED OPTIONS(description="foreign key to ${ref("T1_parent")} id column"),
  t1_name  STRING                                                  OPTIONS(description="description of t1_name column"),    
@@ -16,10 +16,10 @@ CREATE TABLE ${database()}.${dataset_map.get_dataset_01()}.${name()} (
 )
 PARTITION BY DATETIME_TRUNC(d1, DAY)
 OPTIONS (
-  description="The description of ${database()}.${dataset_map.get_dataset_01()}.${name()}}"
+  description="The description of ${self()}"
 );
 
-INSERT ${database()}.${dataset_map.get_dataset_01()}.${name()}
+INSERT ${self()}
           SELECT 11 id, 1 parentId, "name11" t1_name, 111 f1, CAST("2024-01-11 01:00:00.00" AS DATETIME) d1
 UNION ALL SELECT 12 id, 2 parentId, "name12" t1_name, 112 f1, CAST("2024-01-12 01:00:00.00" AS DATETIME) d1
 UNION ALL SELECT 13 id, 2 parentId, "name13" t1_name, 113 f1, CAST("2024-01-13 01:00:00.00" AS DATETIME) d1;

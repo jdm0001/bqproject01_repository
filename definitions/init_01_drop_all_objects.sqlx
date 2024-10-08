@@ -5,13 +5,6 @@ config {
 DECLARE sqlVar STRING DEFAULT '';
 
 
-
--- display environment variables:
-SELECT "${database()}.${dataset_map.get_dataset_01()}" AS `database_dataset_map_get_dataset_01`;
-SELECT "${database()}.${dataset_map.get_dataset_02()}" AS `database_dataset_map_get_dataset_02`;
-
-
-
 --drop all objects:
 --  ${database()}.${schema()}.${name()};
 
