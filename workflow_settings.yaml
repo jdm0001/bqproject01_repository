@@ -3,7 +3,7 @@ defaultLocation: us-central1
 defaultDataset: "bq_dataset_01"
 defaultAssertionDataset: dataform_assertions
 dataformCoreVersion: 3.0.0
-datasetSuffix: d
+
 vars:
     dataset_suffix: d
 
