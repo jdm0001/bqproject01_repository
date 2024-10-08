@@ -1,6 +1,7 @@
 config {
   type: "operations",
-  hasOutput: true
+  hasOutput: true,
+  schema: dataset_map.get_dataset_01()
 }
 
 DROP MATERIALIZED VIEW IF EXISTS `${database()}`.${dataset_map.get_dataset_01()}.${name()};

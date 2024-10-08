@@ -1,7 +1,8 @@
 config {
   type: "operations",
   hasOutput: true,
-  dependencies: ["init_01_drop_all_objects"]
+  dependencies: ["init_01_drop_all_objects"],
+  schema: dataset_map.get_dataset_02()
 }
 
 DROP TABLE IF EXISTS ${database()}.${dataset_map.get_dataset_02()}.${name()};
