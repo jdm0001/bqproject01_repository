@@ -1,0 +1,26 @@
+config { 
+  type: "view",
+  dependencies: ["T1_parent", "T2_child"],
+  schema: dataset_map.get_dataset_01()  
+}
+
+js {
+  const this_year = new Date().getFullYear();
+  const datasetName = dataform.projectConfig.defaultSchema + "_" + dataform.projectConfig.vars.dataset_suffix;
+
+    module.exports = {
+      this_year,
+      datasetName
+    };
+}
+
+SELECT "${self()}" as self,
+  "${database()}" AS database,
+  "${schema()}" AS schema,
+  "${name()}" AS name,
+  ${this_year} AS this_year,
+  "${datasetName}" AS datasetName,
+  "${dataform.projectConfig.vars.datasetSuffix}" as datasetSuffix,
+  "${dataform.projectConfig.vars.dataset_suffix}" as dataset_suffix,
+  "${dataset_map.get_dataset_01()}" AS database_dataset_map_get_dataset_01,
+  "${dataset_map.get_dataset_02()}" AS database_dataset_map_get_dataset_02

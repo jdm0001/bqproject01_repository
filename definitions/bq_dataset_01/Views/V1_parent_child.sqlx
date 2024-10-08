@@ -7,7 +7,8 @@ config {
     childId: "description of child id",
     childName: "description of child name"
   },
-  dependencies: ["T1_parent", "T2_child"]
+  dependencies: ["T1_parent", "T2_child"],
+  schema: dataset_map.get_dataset_01()
 }
 
 SELECT 

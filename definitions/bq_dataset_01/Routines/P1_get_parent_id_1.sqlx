@@ -1,13 +1,15 @@
 config {
  type: "operations",
  hasOutput: true,
- dependencies: ["V1_parent_child"]
+ dependencies: ["V1_parent_child"],
+ schema: dataset_map.get_dataset_01()
 }
-CREATE OR REPLACE PROCEDURE ${self()}()
+CREATE OR REPLACE PROCEDURE ${self()} ()
 BEGIN
 /*
 Describe here because we can't use the Dataform description attribute above.
  description: "description of ${self()} procedure - returns the parent=1 records"
+ note: the above references to $ variables do not resolve in commented SQL.
 */
     SELECT * 
     FROM ${ref("V1_parent_child")}
