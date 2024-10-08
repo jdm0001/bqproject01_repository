@@ -1,35 +1,21 @@
 
-function get_project(){
-
-  e = (dataform.projectConfig.vars.environmentName)
-
-  if (e == 'dev') {
-    return 'bqproject01-d'
-  } else if (e == 'stage') {
-    return 'bqproject01-s'
-  } else if (e == 'prod') {
-    return 'bqproject01-p'
-  }
-
-}
-
-
-function get_dataset(){
+function get_dataset_01(){
   
   e = (dataform.projectConfig.vars.environmentName)
 
   if (e == 'dev') {
-    return 'bq_dataset_01_d'
+    r = 'bq_dataset_01_d'
   } else if (e == 'stage') {
-    return 'bq_dataset_01_s'
+    r = 'bq_dataset_01_s'
   } else if (e == 'prod') {
-    return 'bq_dataset_01_p'
+    r = 'bq_dataset_01_p'
   }
+
+  return r
 
 }
 
 
 module.exports = {
-  get_project,
-  get_dataset
+  get_dataset_01
 };
