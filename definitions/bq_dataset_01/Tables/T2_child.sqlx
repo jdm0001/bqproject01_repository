@@ -2,7 +2,7 @@ config {
   type: "operations",
   hasOutput: true,
   dependencies: ["T1_parent"],
-  schema: dataset_map.get_dataset_01()
+  schema: dataform.projectConfig.vars.dataset_01 + "_" + dataform.projectConfig.vars.dataset_suffix
 }
 
 DROP TABLE IF EXISTS ${self()};

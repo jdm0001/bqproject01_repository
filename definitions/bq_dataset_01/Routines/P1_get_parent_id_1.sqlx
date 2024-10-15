@@ -1,8 +1,8 @@
 config {
- type: "operations",
- hasOutput: true,
- dependencies: ["V1_parent_child"],
- schema: dataset_map.get_dataset_01()
+  type: "operations",
+  hasOutput: true,
+  dependencies: ["V1_parent_child"],
+  schema: dataform.projectConfig.vars.dataset_01 + "_" + dataform.projectConfig.vars.dataset_suffix
 }
 CREATE OR REPLACE PROCEDURE ${self()} ()
 BEGIN

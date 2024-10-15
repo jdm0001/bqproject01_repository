@@ -1,12 +1,12 @@
 config {
   type: "operations",
   hasOutput: true,
-  schema: dataset_map.get_dataset_01()
+  schema: dataform.projectConfig.vars.dataset_01 + "_" + dataform.projectConfig.vars.dataset_suffix 
 }
 
-DROP MATERIALIZED VIEW IF EXISTS `${database()}`.${dataset_map.get_dataset_01()}.${name()};
+DROP MATERIALIZED VIEW IF EXISTS ${self()};
 
-CREATE MATERIALIZED VIEW `${database()}`.${dataset_map.get_dataset_01()}.${name()}
+CREATE MATERIALIZED VIEW ${self()}
   AS
   (
   SELECT 
@@ -23,10 +23,10 @@ CREATE MATERIALIZED VIEW `${database()}`.${dataset_map.get_dataset_01()}.${name(
 
 );
 
-ALTER MATERIALIZED VIEW `${database()}`.${dataset_map.get_dataset_01()}.${name()}
-SET OPTIONS (description="The description of ${database()}.${dataset_map.get_dataset_01()}.${name()}");
+ALTER MATERIALIZED VIEW ${self()}
+SET OPTIONS (description="The description of ${self()}");
 
---ALTER VIEW ${database()}.`${dataset_map`.get_dataset_01()}.${name()}
+--ALTER VIEW ${self()}
 --ALTER COLUMN parentId SET OPTIONS(description="description of id column");
 --cannot have column descriptions for materialized views https://issuetracker.google.com/issues/344800624?pli=1
 

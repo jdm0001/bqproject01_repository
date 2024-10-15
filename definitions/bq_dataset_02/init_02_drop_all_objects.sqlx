@@ -1,7 +1,7 @@
 config {
   type: "operations",
   hasOutput: true,
-  schema: dataset_map.get_dataset_01()
+  schema: dataform.projectConfig.vars.dataset_02 + "_" + dataform.projectConfig.vars.dataset_suffix
 }
 DECLARE sqlVar STRING DEFAULT '';
 
@@ -15,10 +15,7 @@ DECLARE sqlVar STRING DEFAULT '';
 
 FOR record IN (
   SELECT routine_catalog, routine_schema, routine_name
-  FROM ${database()}.${dataset_map.get_dataset_01()}.INFORMATION_SCHEMA.ROUTINES
-  WHERE routine_type = 'PROCEDURE'
-  UNION ALL SELECT routine_catalog, routine_schema, routine_name
-  FROM ${database()}.${dataset_map.get_dataset_02()}.INFORMATION_SCHEMA.ROUTINES
+  FROM ${database()}.${schema()}.INFORMATION_SCHEMA.ROUTINES
   WHERE routine_type = 'PROCEDURE')
 DO
   SET sqlVar = 'DROP PROCEDURE `' || record.ROUTINE_CATALOG || '`.`' || record.ROUTINE_SCHEMA || '`.`' || record.ROUTINE_NAME || '`;';
@@ -29,9 +26,7 @@ END FOR;
 
 FOR record IN (
   SELECT table_catalog, table_schema, table_name
-  FROM ${database()}.${dataset_map.get_dataset_01()}.INFORMATION_SCHEMA.VIEWS
-  UNION ALL SELECT table_catalog, table_schema, table_name
-  FROM ${database()}.${dataset_map.get_dataset_02()}.INFORMATION_SCHEMA.VIEWS)
+  FROM ${database()}.${schema()}.INFORMATION_SCHEMA.VIEWS)
 DO
   SET sqlVar = 'DROP VIEW `' || record.table_catalog || '`.`' || record.table_schema || '`.`' || record.table_name || '`;';
   EXECUTE IMMEDIATE sqlVar;
@@ -41,9 +36,7 @@ END FOR;
 
 FOR record IN (
   SELECT table_catalog, table_schema, table_name
-  FROM ${database()}.${dataset_map.get_dataset_01()}.INFORMATION_SCHEMA.MATERIALIZED_VIEWS
-  UNION ALL SELECT table_catalog, table_schema, table_name
-  FROM ${database()}.${dataset_map.get_dataset_02()}.INFORMATION_SCHEMA.MATERIALIZED_VIEWS)  
+  FROM ${database()}.${schema()}.INFORMATION_SCHEMA.MATERIALIZED_VIEWS)  
 DO
   SET sqlVar = 'DROP MATERIALIZED VIEW `' || record.table_catalog || '`.`' || record.table_schema || '`.`' || record.table_name || '`;';
   EXECUTE IMMEDIATE sqlVar;
@@ -53,9 +46,7 @@ END FOR;
 
 FOR record IN (
   SELECT table_catalog, table_schema, table_name
-  FROM ${database()}.${dataset_map.get_dataset_01()}.INFORMATION_SCHEMA.TABLES  
-  UNION ALL SELECT table_catalog, table_schema, table_name
-  FROM ${database()}.${dataset_map.get_dataset_02()}.INFORMATION_SCHEMA.TABLES)
+  FROM ${database()}.${schema()}.INFORMATION_SCHEMA.TABLES)
 DO
   SET sqlVar = 'DROP TABLE `' || record.table_catalog || '`.`' || record.table_schema || '`.`' || record.table_name || '`;';
   EXECUTE IMMEDIATE sqlVar;

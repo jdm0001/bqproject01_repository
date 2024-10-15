@@ -5,7 +5,9 @@ defaultAssertionDataset: dataform_assertions
 dataformCoreVersion: 3.0.0
 
 vars:
+    dataset_01: "bq_dataset_01"
+    dataset_02: "bq_dataset_02"
+    dataset_03: "bq_dataset_03"    
     dataset_suffix: d
 
-    
 

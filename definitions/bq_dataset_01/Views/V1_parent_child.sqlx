@@ -8,7 +8,7 @@ config {
     childName: "description of child name"
   },
   dependencies: ["T1_parent", "T2_child"],
-  schema: dataset_map.get_dataset_01()
+  schema: dataform.projectConfig.vars.dataset_01 + "_" + dataform.projectConfig.vars.dataset_suffix 
 }
 
 SELECT 

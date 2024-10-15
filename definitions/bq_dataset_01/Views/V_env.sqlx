@@ -1,7 +1,7 @@
 config { 
   type: "view",
   dependencies: ["T1_parent", "T2_child"],
-  schema: dataset_map.get_dataset_01()  
+  schema: dataform.projectConfig.vars.dataset_01 + "_" + dataform.projectConfig.vars.dataset_suffix 
 }
 
 js {
@@ -21,6 +21,4 @@ SELECT "${self()}" as self,
   ${this_year} AS this_year,
   "${datasetName}" AS datasetName,
   "${dataform.projectConfig.vars.datasetSuffix}" as datasetSuffix,
-  "${dataform.projectConfig.vars.dataset_suffix}" as dataset_suffix,
-  "${dataset_map.get_dataset_01()}" AS database_dataset_map_get_dataset_01,
-  "${dataset_map.get_dataset_02()}" AS database_dataset_map_get_dataset_02
+  "${dataform.projectConfig.vars.dataset_suffix}" as dataset_suffix
